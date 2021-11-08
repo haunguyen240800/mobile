@@ -8,12 +8,7 @@ import {
   Image,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import ProductItemComponent from "../../components/ProductItem/ProductItem";
-
-const item_image_1 = require("../../../assets/images/banner.jpg");
-const item_image_2 = require("../../../assets/images/banner.jpg");
-const item_image_3 = require("../../../assets/images/banner.jpg");
-const item_image_4 = require("../../../assets/images/banner.jpg");
+import HomeSectionComponent from "../../components/ProductItem/ProductItem"
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
@@ -22,108 +17,79 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.screenContainer}>
-          <StatusBar barStyle="light-content" />
-          <View style={styles.headerContainer}>
-            <View style={styles.inputContainer}>
-              <MaterialIcons
-                name="search"
-                size={26}
-                color={"#181B19"}
-              ></MaterialIcons>
-              <Text style={styles.inputText}>Bạn tìm gì hôm nay?</Text>
-            </View>
-          </View>
-          
-          <View style={styles.bodyContainer}>
-            <ScrollView>
-              
-              <View style={styles.contentBox}>
-                <View>
-                  <ProductItemComponent
-                    style={styles.product}
-                    name="Thịt lớn"
-                    price="100"
-                    image="item_image_1"
-                  ></ProductItemComponent>
-                </View>
-
-                <View>
-                  <ProductItemComponent
-                    style={styles.product}
-                    name="Thịt lớn"
-                    price="100"
-                    image="item_image_1"
-                  ></ProductItemComponent>
-                </View>
-
-              </View>
-              
-            </ScrollView>
-          </View>
+      <View style={styles.screenContainer}>
+        <StatusBar barStyle="light-content" />
+        <View style={styles.headerContainer}>
+          <View style={styles.inputContainer}>
+            <MaterialIcons name="search" size={24} color="#969696" />
+            <Text style={styles.inputText}>Bạn tìm gì hôm nay?</Text>
+          </View>       
         </View>
-      </View>
+        
+        <View style={styles.bodyContainer}>
+          <ScrollView>
+            <View style={styles.bannerContainer}>
+              <Image source={require('../../../assets/images/banner.jpg')} style={styles.sectionImage} />
+            </View>
+            <HomeSectionComponent cateTitle="Exclusive Offer"/>
+            <HomeSectionComponent cateTitle="Best Selling"/>
+            <HomeSectionComponent cateTitle="Groceries"/>
+            <HomeSectionComponent cateTitle="Exclusive Offer"/>
+          </ScrollView>
+        </View>
+    </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
   screenContainer: {
     flex: 1,
-    marginLeft: 25,
-    marginRight: 25,
+    backgroundColor: "#fff"
   },
   headerContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
     paddingTop: 50,
     paddingBottom: 4,
+    backgroundColor: '#fff',
   },
   inputContainer: {
-    backgroundColor: "#F2F3F2",
-    flexDirection: "row",
+    backgroundColor: '#F2F3F2',
+    flexDirection: 'row',
     flex: 1,
-    alignItems: "center",
+    marginLeft: 15,
+    marginRight: 15,
+    alignItems: 'center',
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 15,
-    // borderWidth: 1,
   },
   inputText: {
-    color: "#969696",
+    color: '#969696',
     fontSize: 14,
     marginLeft: 8,
-    fontWeight: "500",
-  },
-  banner: {
-    
-    marginTop: 10,
-  },
-  imageBanner: {
-    width: "100%",
-    height: "100%",
-    borderRadius: 15,
+    fontWeight: '500',
   },
   cartContainer: {
     paddingHorizontal: 20,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   //
   bodyContainer: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
   },
-  contentBox: {
-    flexDirection: "row",
-    width: "100%",
-    backgroundColor: '#000'
+  bannerContainer:{
+    marginHorizontal: 15,
+    marginTop: 15,
+    height: 130,
   },
-  product: {
-    width: "60%",
+  sectionImage: {
+    width: '100%',
+    height: 130,
+    borderRadius: 4,
   },
 });
+
+
