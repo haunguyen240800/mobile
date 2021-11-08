@@ -1,22 +1,19 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import "react-native-gesture-handler";
-import TabButton from "./src/navigations/TabButton";
-import HomeScreen from "./src/screens/home/HomeScreen";
+import { StyleSheet, Text, View } from "react-native";
+import MainButton from "./src/components/Button/MainButton";
+import Onboarding from "./src/screens/onboarding/Onboarding";
 import SplashScreen from "./src/screens/splashScreen/SplashScreen";
 import SignIn from "./src/screens/signIn/SignIn";
 import SignInWithPhoneNumber from "./src/screens/signIn/SignInWithPhoneNumber";
 import SignInWithFacebook from "./src/screens/signIn/SignInWithFacebook";
 import SignInWithGoogle from "./src/screens/signIn/SignInWithGoogle";
-import Onboarding from "./src/screens/onboarding/Onboarding";
-const Stack = createNativeStackNavigator();
-export default function App() {
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+const Stack = createStackNavigator();
+export default function NavigationFake() {
     return (
-        // <RootComponent></RootComponent>
-
         <NavigationContainer>
-            <Stack.Navigator initialRouteName='SplashScreen'>
+            <Stack.Navigator>
                 <Stack.Screen
                     name='SplashScreen'
                     component={SplashScreen}
@@ -55,14 +52,13 @@ export default function App() {
                     name='SignInWithGoogle'
                     component={SignInWithGoogle}
                 ></Stack.Screen>
-                <Stack.Screen
-                    name='HomeTabs'
-                    component={TabButton}
-                    options={{
-                        headerShown: false,
-                    }}
-                />
             </Stack.Navigator>
         </NavigationContainer>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+});
