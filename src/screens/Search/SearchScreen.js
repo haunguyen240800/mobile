@@ -9,32 +9,19 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import HomeSectionComponent from "../../components/ProductItem/ProductItem"
+import CategorySectionComponent from "../../components/Category/CategorySection";
 
-export default class HomeScreen extends React.Component {
+export default class SearchScreen extends React.Component {
   constructor(props) {
     super(props);
   }
-
-  routerProduct(){
-    console.log('ádsadsd')
-  }
-
-  navigateToProductDetail = () => {
-    this.props.navigation.navigate("ProductDetail");
-  };
 
   render() {
     return (
       <View style={styles.screenContainer}>
         <StatusBar barStyle="light-content" />
         <View style={styles.headerContainer}>
-          <View style= {{flexDirection: 'row',justifyContent: "center"}}>
-            <Image style={styles.imageTopHeader} source={require('../../../assets/icons/Carrot.png')}/> 
-          </View>  
-          <View style={styles.headerAddress}>
-            <MaterialIcons name="location-pin" size={21} color="#4C4F4D" />
-              <Text style={styles.addressText}>Bạn tìm gì hôm nay?</Text>
-            </View>
+            <Text style={styles.title}>Tìm kiếm sản phẩm</Text>
         </View>
         <View style={styles.headerSearchContainer}>
           <View style={styles.inputContainer}>
@@ -44,14 +31,11 @@ export default class HomeScreen extends React.Component {
         </View>
         
         <View style={styles.bodyContainer}>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={styles.bannerContainer}>
-              <Image source={require('../../../assets/banner/banner.png')} style={styles.sectionImage} />
-            </View>
-            <HomeSectionComponent cateName="Exclusive Offer" event = {this.navigateToProductDetail}/>
-            <HomeSectionComponent cateName="Best Selling" event = {this.navigateToProductDetail}/>
-            <HomeSectionComponent cateName="Groceries" event = {this.routerProduct}/>
-            <HomeSectionComponent cateName="Exclusive Offer" event = {this.routerProduct}/>
+          <ScrollView showsVerticalScrollIndicator = {false}>
+            <CategorySectionComponent cateTitle="Exclusive Offer"/>
+            <CategorySectionComponent cateTitle="Best Selling"/>
+            <CategorySectionComponent cateTitle="Groceries"/>
+            <CategorySectionComponent cateTitle="Exclusive Offer"/>
           </ScrollView>
         </View>
     </View>
@@ -65,8 +49,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff"
   },
   headerContainer:{
-    flexDirection: "column",
+    flexDirection: "row",
+    justifyContent: "center",
     paddingTop: 15
+  },
+  title: {
+      fontSize: 20,
+      fontWeight: "bold"
   },
   imageTopHeader: {
     width: 21,
@@ -85,15 +74,15 @@ const styles = StyleSheet.create({
   headerSearchContainer: {
     flexDirection: 'row',
     paddingTop: 20,
-    paddingBottom: 4,
+    paddingBottom: 15,
     backgroundColor: '#fff',
   },
   inputContainer: {
     backgroundColor: '#F2F3F2',
     flexDirection: 'row',
     flex: 1,
-    marginLeft: 15,
-    marginRight: 15,
+    marginLeft: 25,
+    marginRight: 25,
     alignItems: 'center',
     paddingVertical: 8,
     paddingHorizontal: 12,
@@ -105,21 +94,11 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     fontWeight: '500',
   },
-  cartContainer: {
-    paddingHorizontal: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  //
   bodyContainer: {
     flex: 1,
     backgroundColor: '#fff',
   },
-  bannerContainer:{
-    marginHorizontal: 15,
-    marginTop: 15,
-    height: 130,
-  },
+
   sectionImage: {
     width: '100%',
     height: 130,

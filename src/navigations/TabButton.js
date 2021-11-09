@@ -3,6 +3,7 @@ import "react-native-gesture-handler";
 import { MaterialIcons } from "@expo/vector-icons";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import HomeScreen from "../screens/home/HomeScreen";
+import SearchScreen from "../screens/Search/SearchScreen";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -50,7 +51,7 @@ export default class TabButton extends React.Component {
         ></Tab.Screen>
         <Tab.Screen
           name="search"
-          component={HomeScreen}
+          component={SearchScreen}
           options={{
             tabBarLabel: "Tìm kiếm",
             // tabBarStyle: {

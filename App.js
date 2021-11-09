@@ -175,6 +175,17 @@ export default class App extends React.Component {
                                 headerShown: false,
                             }}
                         />
+                        <Stack.Screen
+                            name='ProductDetail'
+                            component={ProductDetailScreen}
+                            options={{
+                                headerShown: false,
+                                headerTitle: "",
+                                headerStyle: {
+                                    backgroundColor: "#F2F3F2",
+                                },
+                            }}
+                        />
                     </Stack.Navigator>
                 </NavigationContainer>
             );
