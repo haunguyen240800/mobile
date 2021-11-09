@@ -1,6 +1,8 @@
 import React from "react";
 import { Text, View, StyleSheet, Pressable, Dimensions } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { useFonts } from "@expo-google-fonts/inter";
+import AppLoading from "expo-app-loading";
 export default function Button(props) {
     const { onPress, title, bottom, startColor, endColor } = props;
     return (
@@ -11,7 +13,7 @@ export default function Button(props) {
                 colors={[startColor, endColor]}
                 style={[styles.button, { bottom: bottom }]}
             >
-                <Pressable onPress={onPress}>
+                <Pressable onPress={onPress} style={styles.buttonText}>
                     <Text style={styles.text}>{title}</Text>
                 </Pressable>
             </LinearGradient>
@@ -35,8 +37,13 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 16,
         lineHeight: 21,
-        fontWeight: "bold",
+        fontFamily: "SemiBold",
         letterSpacing: 0.25,
         color: "white",
+    },
+    buttonText: {
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "center",
     },
 });

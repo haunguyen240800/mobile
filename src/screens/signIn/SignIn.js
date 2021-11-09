@@ -15,7 +15,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import MainButton from "../../components/Button/MainButton";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { render } from "react-dom";
-
+import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
+import AppLoading from "expo-app-loading";
 const LoginButton = (props) => {
     return (
         <Icon.Button
@@ -32,11 +33,9 @@ const LoginButton = (props) => {
     );
 };
 export default function SignIn({ navigation }) {
-    const [selectedValue, setSelectedValue] = useState("+84");
     return (
         <View style={styles.container}>
             <Image
-                // source={require("../../../assets/images/onboarding-background.png")}
                 source={require("../../../assets/images/sign-in-background.png")}
                 resizeMode='cover'
                 style={styles.image}
@@ -47,7 +46,10 @@ export default function SignIn({ navigation }) {
                 </Text>
                 <TouchableHighlight
                     underlayColor='white'
-                    style={{ alignItems: "center" }}
+                    style={{
+                        alignItems: "center",
+                        top: 20,
+                    }}
                     onPress={() => {
                         navigation.navigate("SignInWithPhoneNumber");
                     }}
@@ -61,11 +63,11 @@ export default function SignIn({ navigation }) {
                         <Text
                             style={{
                                 left: -30,
-                                fontWeight: "bold",
+                                fontFamily: "Bold",
                                 fontSize: 18,
                             }}
                         >
-                            +880
+                            +84
                         </Text>
                     </View>
                 </TouchableHighlight>
@@ -91,7 +93,6 @@ export default function SignIn({ navigation }) {
         </View>
     );
 }
-const height = Dimensions.get("window").height;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -109,9 +110,9 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     text: {
-        fontWeight: "bold",
         fontSize: 26,
         textAlign: "justify",
+        fontFamily: "SemiBold",
     },
     flag: {
         resizeMode: "center",
@@ -121,7 +122,6 @@ const styles = StyleSheet.create({
     },
     inputPhoneNumber: {
         width: "100%",
-        top: 20,
         borderBottomColor: "#E2E2E2",
         borderBottomWidth: 1,
         flexDirection: "row",
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
         top: 50,
         textAlign: "center",
         color: "#828282",
-        fontWeight: "bold",
+        fontFamily: "Medium",
     },
     loginButton: {
         alignItems: "center",
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     textButton: {
         color: "#fff",
         fontSize: 16,
-        fontWeight: "bold",
         marginHorizontal: 30,
+        fontFamily: "SemiBold",
     },
 });

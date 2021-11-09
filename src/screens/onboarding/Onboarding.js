@@ -9,6 +9,8 @@ import {
     Alert,
     Button,
 } from "react-native";
+import { useFonts } from "@expo-google-fonts/inter";
+import AppLoading from "expo-app-loading";
 import MainButton from "../../components/Button/MainButton";
 export default function Onboarding({ navigation }) {
     const navigateScreen = () => {
@@ -65,13 +67,14 @@ const styles = StyleSheet.create({
     },
     appName: {
         fontSize: 28,
-        fontWeight: "bold",
         color: "#fff",
+        fontFamily: "Bold",
     },
     appInfo: {
         textAlign: "center",
         fontSize: 16,
         top: 10,
         color: "#fff",
+        fontFamily: "Regular",
     },
 });

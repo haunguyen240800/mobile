@@ -8,6 +8,7 @@ import {
     TextInput,
     Alert,
     TouchableHighlight,
+    ImageBackground,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import NextButton from "../../components/Button/NextButton";
@@ -15,44 +16,48 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { render } from "react-dom";
 
 export default function SignIn({ navigation }) {
-    const [selectedValue, setSelectedValue] = useState("+84");
     const navigateToHome = () => {
-        navigation.navigate("HomeTabs");
+        navigation.navigate("Verification");
     };
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Nhập số điện thoại của bạn</Text>
-            <Text style={styles.label}>Số điện thoại</Text>
-            <TouchableHighlight
-                underlayColor='white'
-                style={{ alignItems: "center" }}
-                onPress={() => {
-                    navigation.navigate("SignInWithPhoneNumber");
-                }}
+            <ImageBackground
+                source={require("../../../assets/images/verification-background.png")}
+                resizeMode='cover'
+                style={styles.image}
             >
-                <View style={styles.inputPhoneNumber}>
-                    <Image
-                        source={require("../../../assets/images/flag.png")}
-                        resizeMode='cover'
-                        style={styles.flag}
-                    ></Image>
-                    <Text
-                        style={{
-                            left: -30,
-                            fontWeight: "bold",
-                            fontSize: 18,
-                        }}
-                    >
-                        +84
-                    </Text>
-                    <TextInput
-                        style={styles.textInput}
-                        keyboardType='numeric'
-                        maxLength={10}
-                    />
+                <Text style={styles.title}>Nhập số điện thoại của bạn</Text>
+                <Text style={styles.label}>Số điện thoại</Text>
+                <TouchableHighlight
+                    underlayColor='white'
+                    style={{ alignItems: "center" }}
+                >
+                    <View style={styles.inputPhoneNumber}>
+                        <Image
+                            source={require("../../../assets/images/flag.png")}
+                            resizeMode='cover'
+                            style={styles.flag}
+                        ></Image>
+                        <Text
+                            style={{
+                                left: -30,
+                                fontWeight: "bold",
+                                fontSize: 18,
+                            }}
+                        >
+                            +84
+                        </Text>
+                        <TextInput
+                            style={styles.textInput}
+                            keyboardType='numeric'
+                            maxLength={10}
+                        />
+                    </View>
+                </TouchableHighlight>
+                <View style={styles.nextButton}>
+                    <NextButton pressEvent={navigateToHome} />
                 </View>
-            </TouchableHighlight>
-            <NextButton pressEvent={navigateToHome} />
+            </ImageBackground>
         </View>
     );
 }
@@ -61,7 +66,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#fcfcfc",
-        padding: 20,
+    },
+    image: {
+        height: "100%",
+        paddingHorizontal: 20,
     },
     title: {
         fontWeight: "bold",
