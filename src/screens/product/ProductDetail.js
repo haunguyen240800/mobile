@@ -7,8 +7,8 @@ import {
   ScrollView,
   Image,
 } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
-import HomeSectionComponent from "../../components/ProductItem/ProductItem"
+import Icon from "react-native-vector-icons/FontAwesome";
+import HomeSectionComponent from "../../components/ProductItem/ProductItem";
 
 export default class ProductDetailScreen extends React.Component {
   constructor(props) {
@@ -19,25 +19,26 @@ export default class ProductDetailScreen extends React.Component {
     return (
       <View style={styles.screenContainer}>
         <StatusBar barStyle="light-content" />
-        <View style={styles.headerContainer}>
-          <View style={styles.inputContainer}>
-            <MaterialIcons name="search" size={24} color="#969696" />
-            <Text style={styles.inputText}>Bạn tìm gì hôm nay?</Text>
-          </View>       
-        </View>
-        
-        <View style={styles.bodyContainer}>
+        <View style={styles.container}>
           <ScrollView>
-            <View style={styles.bannerContainer}>
-              <Image source={require('../../../assets/images/banner.jpg')} style={styles.sectionImage} />
+            <View style={styles.header}>
+              <Icon name="angle-left" size={30} color="#181725"/>
+              <Icon name="angle-left" size={30} color="#181725"/>
             </View>
-            <HomeSectionComponent cateTitle="Exclusive Offer"/>
-            <HomeSectionComponent cateTitle="Best Selling"/>
-            <HomeSectionComponent cateTitle="Groceries"/>
-            <HomeSectionComponent cateTitle="Exclusive Offer"/>
+            
+            <View style={styles.bannerContainer}>
+              <Image
+                source={require("../../../assets/images/banner.jpg")}
+                style={styles.sectionImage}
+              />
+            </View>
+            <HomeSectionComponent cateTitle="Exclusive Offer" />
+            <HomeSectionComponent cateTitle="Best Selling" />
+            <HomeSectionComponent cateTitle="Groceries" />
+            <HomeSectionComponent cateTitle="Exclusive Offer" />
           </ScrollView>
         </View>
-    </View>
+      </View>
     );
   }
 }
@@ -45,51 +46,29 @@ export default class ProductDetailScreen extends React.Component {
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
-  headerContainer: {
-    flexDirection: 'row',
-    paddingTop: 50,
-    paddingBottom: 4,
-    backgroundColor: '#fff',
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: '#F2F3F2'
   },
-  inputContainer: {
-    backgroundColor: '#F2F3F2',
-    flexDirection: 'row',
-    flex: 1,
-    marginLeft: 15,
-    marginRight: 15,
-    alignItems: 'center',
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 15,
-  },
-  inputText: {
-    color: '#969696',
-    fontSize: 14,
-    marginLeft: 8,
-    fontWeight: '500',
-  },
-  cartContainer: {
-    paddingHorizontal: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  //
-  bodyContainer: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  bannerContainer:{
-    marginHorizontal: 15,
-    marginTop: 15,
-    height: 130,
+
+  bannerContainer: {
+    // flexDirection: "row",
+    // justifyContent: "center",
+    // alignItems: "center",
+    height: "30%",
+    backgroundColor: "#F2F3F2",
+    borderBottomStartRadius: 30,
+    borderBottomEndRadius: 30,
+    padding: 40,
   },
   sectionImage: {
-    width: '100%',
-    height: 130,
+    width: "100%",
+    height: "100%",
     borderRadius: 4,
+    borderRadius: 20,
   },
 });
-
-

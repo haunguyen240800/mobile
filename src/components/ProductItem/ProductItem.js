@@ -6,73 +6,87 @@ import {
   Image,
   Dimensions,
   ScrollView,
+  TouchableHighlight,
 } from "react-native";
 import { Button } from "react-native-elements";
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const { width } = Dimensions.get("window");
 
-const section_banner = require("../../../assets/images/banner.jpg");
-const item_image_1 = require("../../../assets/images/apple.png");
-const item_image_2 = require("../../../assets/images/apple.png");
-const item_image_3 = require("../../../assets/images/apple.png");
-const item_image_4 = require("../../../assets/images/apple.png");
+const item_image_1 = require("../../../assets/images/product/apple.png");
+const item_image_2 = require("../../../assets/images/product/banana.png");
+const item_image_3 = require("../../../assets/images/product/bell-pepper.png");
+const item_image_4 = require("../../../assets/images/product/bakery.png");
 
-const ProductItem = ({ image, name, price }) => (
-  <View style={styles.itemContainer}>
-    <Image
-      source={require("../../../assets/images/apple.png")}
-      style={styles.itemImage}
-    />
-    <Text style={styles.itemName} numberOfLines={2}>
-      {name}
-    </Text>
-    <View style={styles.row}>
-      <Text style={styles.itemPrice}>{price}</Text>
-      <Button buttonStyle = {styles.btnAdd}
-        icon={<Icon name="plus" size={15} color="white" />}
-      />
+const ProductItem = ({ image, name, price, event }) => (
+  (
+    <View style={styles.itemContainer}>
+      <Image source={image} style={styles.itemImage} />
+      <Text style={styles.itemName} numberOfLines={2}>
+        {name}
+      </Text>
+      <View style={styles.row}>
+        <Text style={styles.itemPrice}>{price}</Text>
+        <Button
+          buttonStyle={styles.btnAdd}
+          icon={<Icon name="plus" size={10} color="white" />}
+        />
+      </View>
     </View>
-  </View>
+  )
 );
 
-const HomeSectionComponent = ({ cateTitle }) => {
-  return (
-    <View style={styles.sectionContainer}>
-      {/* <Text style={styles.sectionTitle}>Điện thoại - Máy tính bảng</Text>
-      <Image source={require('../../../assets/images/banner.jpg')} style={styles.sectionImage} /> */}
-      <View style={styles.cateContainer}>
-        <Text style={styles.cateTitle}>{cateTitle}</Text>
-        <Text style={styles.seeAll}>See all</Text>
-      </View>
+export default class HomeSectionComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        <View style={styles.listItemContainer}>
-          {[
-            { image1: item_image_1, image2: item_image_2 },
-            { image1: item_image_2, image2: item_image_3 },
-            { image1: item_image_4, image2: item_image_1 },
-            { image1: item_image_1, image2: item_image_2 },
-          ].map((e, index) => (
-            <View key={index.toString()}>
-              <ProductItem
-                name="Bananas"
-                image={e.image1}
-                price="$ 4.9"
-              />
-            </View>
-          ))}
+  navigateToHome = () => {
+    navigation.navigate("HomeTabs");
+  };
+
+  render() {
+    return (
+      <View style={styles.sectionContainer}>
+        <View style={styles.cateContainer}>
+          <Text style={styles.cateName}>{this.props.cateName}</Text>
+          <TouchableHighlight
+            underlayColor="#000"
+            style={{ alignItems: "center" }}
+            onPress={this.props.event}
+          >
+            <Text style={styles.seeAll}>See all</Text>
+          </TouchableHighlight>
         </View>
-      </ScrollView>
 
-      {/* <View style={styles.seeMoreContainer}>
-        <Text style={styles.seeMoreText}>XEM THÊM 636 SẢN PHẨM </Text>
-      </View> */}
-    </View>
-  );
-};
-
-export default HomeSectionComponent;
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          <View style={styles.listItemContainer}>
+            {[
+              { image1: item_image_1, image2: item_image_2 },
+              { image1: item_image_2, image2: item_image_3 },
+              { image1: item_image_3, image2: item_image_1 },
+              { image1: item_image_4, image2: item_image_2 },
+            ].map((e, index) => (
+              <View key={index.toString()}>
+                <TouchableHighlight
+                  underlayColor="#fff"
+                  style={{ alignItems: "center" }}
+                  onPress={this.props.event}
+                >
+                  <ProductItem
+                    name="Bananas"
+                    image={e.image1}
+                    price="$ 4.9"
+                  />
+                </TouchableHighlight>
+              </View>
+            ))}
+          </View>
+        </ScrollView>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   sectionContainer: {
@@ -98,7 +112,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  cateTitle: {
+  cateName: {
     fontSize: 24,
     fontWeight: "bold",
     color: "#181725",
@@ -137,7 +151,7 @@ const styles = StyleSheet.create({
   //
   listItemContainer: {
     flexDirection: "row",
-    paddingVertical: 5
+    paddingVertical: 5,
   },
   itemContainer: {
     width: 150,
@@ -152,6 +166,7 @@ const styles = StyleSheet.create({
   itemImage: {
     width: 107,
     height: 67,
+    resizeMode: "center",
   },
   itemName: {
     fontSize: 16,
@@ -164,11 +179,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#181725",
   },
-  btnAdd:{
-    width: 45,
-    height: 45,
-    backgroundColor: '#53B175',
-    borderRadius: 17
+  btnAdd: {
+    width: 25,
+    height: 25,
+    backgroundColor: "#53B175",
+    borderRadius: 5,
   },
   //
   seeMoreContainer: {
@@ -181,9 +196,9 @@ const styles = StyleSheet.create({
   seeMoreText: {
     color: "#0e45b4",
   },
-  row:{
+  row: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between"
-  }
+    justifyContent: "space-between",
+  },
 });

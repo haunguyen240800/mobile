@@ -10,18 +10,25 @@ import {
 
 const { width } = Dimensions.get("window");
 
-const item_image_1 = require("../../../assets/images/apple.png");
-const item_image_2 = require("../../../assets/images/apple.png");
-const item_image_3 = require("../../../assets/images/apple.png");
+const item_image_1 = require("../../../assets/images/product/fruit-vegetable.png");
+const item_image_2 = require("../../../assets/images/product/dairy-egg.png");
+const item_image_3 = require("../../../assets/images/product/meat-fish.png");
 
 const CategorytItem = ({ image, name, backgroundColor, borderColor }) => (
-  <View style={[styles.itemContainer, 
-    { backgroundColor: backgroundColor,flexDirection: "row",alignItems: "center",justifyContent: "center",borderColor: borderColor }]}>
+  <View
+    style={[
+      styles.itemContainer,
+      {
+        backgroundColor: backgroundColor,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        borderColor: borderColor,
+      },
+    ]}
+  >
     <View>
-      <Image
-        source={require("../../../assets/images/apple.png")}
-        style={styles.itemImage}
-      />
+      <Image source={image} style={styles.itemImage} />
       <Text style={styles.itemName} numberOfLines={2}>
         {name}
       </Text>
@@ -36,15 +43,15 @@ const CategorySectionComponent = ({ cateTitle }) => {
       <Image source={require('../../../assets/images/banner.jpg')} style={styles.sectionImage} /> */}
       <View style={styles.listItemContainer}>
         {[
-          { image1: item_image_1, image2: item_image_2 },
-          { image1: item_image_2, image2: item_image_3 },
+          { cateName: "Frash Fruits & Vegetable",image: item_image_1, backgroundColor: "rgba(83, 177, 117, 0.1);", borderColor: "#53B175" },
+          { cateName: "Dairy & Eggs",image: item_image_2, backgroundColor: "rgba(248, 164, 76, 0.1);",borderColor: "#F8A44C"  },
         ].map((e, index) => (
           <View key={index.toString()}>
             <CategorytItem
-              name="Bananas"
-              image={e.image1}
-              backgroundColor="rgba(83, 177, 117, 0.1);"
-              borderColor = "#53B175"
+              name={e.cateName}
+              image={e.image}
+              backgroundColor={e.backgroundColor}
+              borderColor= {e.borderColor}
             />
           </View>
         ))}
@@ -61,21 +68,12 @@ export default CategorySectionComponent;
 
 const styles = StyleSheet.create({
   sectionContainer: {
+    flexDirection: "column",
     backgroundColor: "#fff",
     paddingHorizontal: 25,
-    paddingBottom: 5
-},
-  sectionTitle: {
-    fontWeight: "700",
-    fontSize: 16,
-    color: "#2f2f2f",
-    marginVertical: 12,
+    paddingBottom: 5,
   },
-  sectionImage: {
-    width: width - 24,
-    height: 130,
-    borderRadius: 4,
-  },
+
   //
   cateContainer: {
     flexDirection: "row",
@@ -83,42 +81,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  cateTitle: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#181725",
-  },
-  seeAll: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#53B175",
-  },
-  filterContainer: {
-    flexDirection: "row",
-    marginTop: 10,
-  },
-  filterActiveButtonContainer: {
-    backgroundColor: "#242424",
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 4,
-    marginRight: 10,
-  },
-  filterInactiveButtonContainer: {
-    backgroundColor: "#fff",
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 4,
-    borderColor: "#5a5a5a",
-    borderWidth: 1,
-    marginRight: 10,
-  },
-  filterActiveText: {
-    color: "#fff",
-  },
-  filterInactiveText: {
-    color: "#5a5a5a",
-  },
+
   //
   listItemContainer: {
     flexDirection: "row",
@@ -134,27 +97,18 @@ const styles = StyleSheet.create({
   },
 
   itemImage: {
-    width: 107,
-    height: 67,
+    width: 112,
+    height: 75,
+    resizeMode: "center",
   },
   itemName: {
     fontSize: 16,
     fontWeight: "bold",
     color: "#181725",
     textAlign: "center",
-    marginTop: 25
+    paddingTop: 10,
   },
-  itemPrice: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#181725",
-  },
-  btnAdd: {
-    width: 45,
-    height: 45,
-    backgroundColor: "#53B175",
-    borderRadius: 17,
-  },
+
   //
   seeMoreContainer: {
     marginTop: 10,

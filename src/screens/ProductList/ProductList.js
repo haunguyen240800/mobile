@@ -15,11 +15,7 @@ export default class HomeScreen extends React.Component {
     super(props);
   }
 
-  routerProduct(){
-    console.log('ádsadsd')
-  }
-
-  navigateToProductDetail = () => {
+  navigateToHome = () => {
     this.props.navigation.navigate("ProductDetail");
   };
 
@@ -48,10 +44,10 @@ export default class HomeScreen extends React.Component {
             <View style={styles.bannerContainer}>
               <Image source={require('../../../assets/banner/banner.png')} style={styles.sectionImage} />
             </View>
-            <HomeSectionComponent cateName="Exclusive Offer" event = {this.navigateToProductDetail}/>
-            <HomeSectionComponent cateName="Best Selling" event = {this.navigateToProductDetail}/>
-            <HomeSectionComponent cateName="Groceries" event = {this.routerProduct}/>
-            <HomeSectionComponent cateName="Exclusive Offer" event = {this.routerProduct}/>
+            <HomeSectionComponent cateTitle="Exclusive Offer" onPress=""/>
+            <HomeSectionComponent cateTitle="Best Selling"/>
+            <HomeSectionComponent cateTitle="Groceries"/>
+            <HomeSectionComponent cateTitle="Exclusive Offer"/>
           </ScrollView>
         </View>
     </View>

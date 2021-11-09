@@ -10,6 +10,7 @@ import SignInWithPhoneNumber from "./src/screens/signIn/SignInWithPhoneNumber";
 import SignInWithFacebook from "./src/screens/signIn/SignInWithFacebook";
 import SignInWithGoogle from "./src/screens/signIn/SignInWithGoogle";
 import Onboarding from "./src/screens/onboarding/Onboarding";
+import ProductDetailScreen from "./src/screens/product/ProductDetail";
 const Stack = createNativeStackNavigator();
 export default function App() {
     return (
@@ -60,6 +61,18 @@ export default function App() {
                     component={TabButton}
                     options={{
                         headerShown: false,
+                    }}
+                />
+                <Stack.Screen
+                    name='ProductDetail'
+                    component={ProductDetailScreen}
+                    options={{
+                        headerShown: false,
+                        headerTitle: "",
+                        headerStyle: {
+                            backgroundColor: "#F2F3F2"
+                        },
+                        
                     }}
                 />
             </Stack.Navigator>
