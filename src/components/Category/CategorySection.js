@@ -7,63 +7,48 @@ import {
   Dimensions,
   ScrollView,
 } from "react-native";
-import { Button } from "react-native-elements";
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 const { width } = Dimensions.get("window");
 
-const section_banner = require("../../../assets/images/banner.jpg");
 const item_image_1 = require("../../../assets/images/apple.png");
 const item_image_2 = require("../../../assets/images/apple.png");
 const item_image_3 = require("../../../assets/images/apple.png");
-const item_image_4 = require("../../../assets/images/apple.png");
 
-const ProductItem = ({ image, name, price }) => (
-  <View style={styles.itemContainer}>
-    <Image
-      source={require("../../../assets/images/apple.png")}
-      style={styles.itemImage}
-    />
-    <Text style={styles.itemName} numberOfLines={2}>
-      {name}
-    </Text>
-    <View style={styles.row}>
-      <Text style={styles.itemPrice}>{price}</Text>
-      <Button buttonStyle = {styles.btnAdd}
-        icon={<Icon name="plus" size={15} color="white" />}
+const CategorytItem = ({ image, name, backgroundColor, borderColor }) => (
+  <View style={[styles.itemContainer, 
+    { backgroundColor: backgroundColor,flexDirection: "row",alignItems: "center",justifyContent: "center",borderColor: borderColor }]}>
+    <View>
+      <Image
+        source={require("../../../assets/images/apple.png")}
+        style={styles.itemImage}
       />
+      <Text style={styles.itemName} numberOfLines={2}>
+        {name}
+      </Text>
     </View>
   </View>
 );
 
-const HomeSectionComponent = ({ cateTitle }) => {
+const CategorySectionComponent = ({ cateTitle }) => {
   return (
     <View style={styles.sectionContainer}>
       {/* <Text style={styles.sectionTitle}>Điện thoại - Máy tính bảng</Text>
       <Image source={require('../../../assets/images/banner.jpg')} style={styles.sectionImage} /> */}
-      <View style={styles.cateContainer}>
-        <Text style={styles.cateTitle}>{cateTitle}</Text>
-        <Text style={styles.seeAll}>See all</Text>
+      <View style={styles.listItemContainer}>
+        {[
+          { image1: item_image_1, image2: item_image_2 },
+          { image1: item_image_2, image2: item_image_3 },
+        ].map((e, index) => (
+          <View key={index.toString()}>
+            <CategorytItem
+              name="Bananas"
+              image={e.image1}
+              backgroundColor="rgba(83, 177, 117, 0.1);"
+              borderColor = "#53B175"
+            />
+          </View>
+        ))}
       </View>
-
-      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        <View style={styles.listItemContainer}>
-          {[
-            { image1: item_image_1, image2: item_image_2 },
-            { image1: item_image_2, image2: item_image_3 },
-            { image1: item_image_4, image2: item_image_1 },
-            { image1: item_image_1, image2: item_image_2 },
-          ].map((e, index) => (
-            <View key={index.toString()}>
-              <ProductItem
-                name="Bananas"
-                image={e.image1}
-                price="$ 4.9"
-              />
-            </View>
-          ))}
-        </View>
-      </ScrollView>
 
       {/* <View style={styles.seeMoreContainer}>
         <Text style={styles.seeMoreText}>XEM THÊM 636 SẢN PHẨM </Text>
@@ -72,14 +57,14 @@ const HomeSectionComponent = ({ cateTitle }) => {
   );
 };
 
-export default HomeSectionComponent;
+export default CategorySectionComponent;
 
 const styles = StyleSheet.create({
   sectionContainer: {
     backgroundColor: "#fff",
-    paddingHorizontal: 15,
-    // paddingTop: 15
-  },
+    paddingHorizontal: 25,
+    paddingBottom: 5
+},
   sectionTitle: {
     fontWeight: "700",
     fontSize: 16,
@@ -137,13 +122,12 @@ const styles = StyleSheet.create({
   //
   listItemContainer: {
     flexDirection: "row",
-    paddingVertical: 5
+    justifyContent: "space-between",
+    paddingVertical: 5,
   },
   itemContainer: {
-    width: 150,
-    marginRight: 12,
-    padding: 20,
-    marginTop: 10,
+    width: 160,
+    height: 190,
     borderRadius: 18,
     borderWidth: 1,
     borderColor: "#E2E2E2",
@@ -157,18 +141,19 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     color: "#181725",
-    marginVertical: 4,
+    textAlign: "center",
+    marginTop: 25
   },
   itemPrice: {
     fontSize: 18,
     fontWeight: "bold",
     color: "#181725",
   },
-  btnAdd:{
+  btnAdd: {
     width: 45,
     height: 45,
-    backgroundColor: '#53B175',
-    borderRadius: 17
+    backgroundColor: "#53B175",
+    borderRadius: 17,
   },
   //
   seeMoreContainer: {
@@ -181,9 +166,9 @@ const styles = StyleSheet.create({
   seeMoreText: {
     color: "#0e45b4",
   },
-  row:{
+  row: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between"
-  }
+    justifyContent: "space-between",
+  },
 });
