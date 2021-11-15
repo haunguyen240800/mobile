@@ -14,7 +14,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import NextButton from "../../components/Button/NextButton";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { render } from "react-dom";
-
+import BackButton from "../../components/BackButton/BackButton";
 export default function SignIn({ navigation }) {
     const navigateToHome = () => {
         navigation.navigate("Verification");
@@ -26,6 +26,13 @@ export default function SignIn({ navigation }) {
                 resizeMode='cover'
                 style={styles.image}
             >
+                <View style={{ top: 30, marginBottom: 20 }}>
+                    <BackButton
+                        pressEvent={() => {
+                            navigation.goBack();
+                        }}
+                    ></BackButton>
+                </View>
                 <Text style={styles.title}>Nhập số điện thoại của bạn</Text>
                 <Text style={styles.label}>Số điện thoại</Text>
                 <TouchableHighlight
@@ -41,7 +48,7 @@ export default function SignIn({ navigation }) {
                         <Text
                             style={{
                                 left: -30,
-                                fontWeight: "bold",
+                                fontFamily: "Bold",
                                 fontSize: 18,
                             }}
                         >
@@ -72,12 +79,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
     },
     title: {
-        fontWeight: "bold",
+        fontFamily: "Bold",
         fontSize: 21,
         marginTop: 20,
     },
     label: {
-        fontWeight: "bold",
+        fontFamily: "SemiBold",
         color: "#7C7C7C",
         fontSize: 16,
         marginTop: 30,

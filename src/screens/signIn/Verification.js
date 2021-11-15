@@ -1,100 +1,120 @@
-import React, { useState } from "react";
+import React from "react";
 import {
+    AppRegistry,
+    StyleSheet,
     Text,
     View,
-    StyleSheet,
-    Dimensions,
-    Image,
-    TextInput,
     Alert,
-    TouchableHighlight,
+    ImageBackground,
 } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import BackButton from "../../components/BackButton/BackButton";
 import NextButton from "../../components/Button/NextButton";
-import Icon from "react-native-vector-icons/FontAwesome";
-import { render } from "react-dom";
+import CodeInput from "../../components/ConfirmCodeInput/ConfirmationCodeInput";
 
-export default function Verification({ navigation }) {
-    const navigateToHome = () => {
-        navigation.replace("HomeTabs");
-    };
-    return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Nhập số điện thoại của bạn</Text>
-            <Text style={styles.label}>Số điện thoại</Text>
-            <TouchableHighlight
-                underlayColor='white'
-                style={{ alignItems: "center" }}
-            >
-                <View style={styles.inputPhoneNumber}>
-                    <Image
-                        source={require("../../../assets/images/flag.png")}
-                        resizeMode='cover'
-                        style={styles.flag}
-                    ></Image>
-                    <Text
-                        style={{
-                            left: -30,
-                            fontWeight: "bold",
-                            fontSize: 18,
-                        }}
-                    >
-                        +84
-                    </Text>
-                    <TextInput
-                        style={styles.textInput}
-                        keyboardType='numeric'
-                        maxLength={10}
-                    />
-                </View>
-            </TouchableHighlight>
-            <View style={styles.nextButton}>
-                <NextButton pressEvent={navigateToHome} />
+export default class Verification extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            code: "",
+            gotCode: "111111",
+            correct: false,
+        };
+    }
+
+    _onFinishCheckingCode2(isValid, code) {
+        const { navigation } = this.props;
+        if (!isValid) {
+            Alert.alert(
+                "Confirmation Code",
+                "Code not match!",
+                [{ text: "OK" }],
+                { cancelable: false }
+            );
+        } else {
+            this.setState({ code });
+            navigation.reset({
+                index: 0,
+                routes: [{ name: "HomeTabs" }],
+            });
+        }
+    }
+
+    render() {
+        const { navigation } = this.props;
+        return (
+            <View style={styles.container}>
+                <ImageBackground
+                    source={require("../../../assets/images/verification-background.png")}
+                    resizeMode='cover'
+                    style={styles.image}
+                >
+                    <View style={{ top: 30, marginBottom: 20 }}>
+                        <BackButton
+                            pressEvent={() => {
+                                navigation.goBack();
+                            }}
+                        ></BackButton>
+                    </View>
+                    <Text style={styles.title}>Nhập mã xác nhận</Text>
+                    <Text style={styles.label}>Mã</Text>
+                    <View>
+                        <CodeInput
+                            ref='codeInputRef2'
+                            keyboardType='numeric'
+                            activeColor='#000'
+                            codeLength={6}
+                            className={"border-b"}
+                            compareWithCode={this.state.gotCode}
+                            autoFocus={true}
+                            inputPosition='full-width'
+                            codeInputStyle={{
+                                fontFamily: "Bold",
+                                color: "#000",
+                                fontSize: 18,
+                                borderColor: "#000",
+                            }}
+                            onFulfill={(isValid, code) =>
+                                this._onFinishCheckingCode2(isValid, code)
+                            }
+                            onCodeChange={(code) => {
+                                this.state.code = code;
+                            }}
+                        />
+                    </View>
+                </ImageBackground>
             </View>
-        </View>
-    );
+        );
+    }
 }
-const height = Dimensions.get("window").height;
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fcfcfc",
-        padding: 20,
+        backgroundColor: "#F5F6CE",
     },
-    title: {
-        fontWeight: "bold",
-        fontSize: 21,
-        marginTop: 20,
+    image: {
+        height: "100%",
+        paddingHorizontal: 20,
     },
     label: {
-        fontWeight: "bold",
+        fontFamily: "SemiBold",
         color: "#7C7C7C",
         fontSize: 16,
         marginTop: 30,
     },
-    inputPhoneNumber: {
-        width: "100%",
-        borderBottomColor: "#E2E2E2",
-        borderBottomWidth: 1,
-        flexDirection: "row",
-        alignItems: "center",
+
+    title: {
+        fontFamily: "Bold",
+        fontSize: 21,
+        marginTop: 20,
     },
-    flag: {
-        resizeMode: "center",
-        left: -20,
-        top: 1,
-        borderRadius: 3,
-    },
-    textInput: {
-        width: "100%",
-        height: 40,
-        fontWeight: "bold",
-        fontSize: 18,
-        left: -20,
-    },
+    inputWrapper3: {},
+    inputWrapper: {},
     nextButton: {
         position: "absolute",
         right: 20,
         bottom: 50,
     },
 });
+
+AppRegistry.registerComponent("Verification", () => Verification);

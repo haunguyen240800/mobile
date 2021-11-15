@@ -11,77 +11,9 @@ import SignInWithGoogle from "./src/screens/signIn/SignInWithGoogle";
 import Verification from "./src/screens/signIn/Verification";
 import Onboarding from "./src/screens/onboarding/Onboarding";
 import AppLoading from "expo-app-loading";
-import { View, StyleSheet } from "react-native";
 import * as Font from "expo-font";
+import ProductDetailScreen from "./src/screens/product/ProductDetail";
 const Stack = createNativeStackNavigator();
-// export default function App() {
-//     return (
-//         <NavigationContainer>
-//             <Stack.Navigator initialRouteName='SplashScreen'>
-//                 <Stack.Screen
-//                     name='SplashScreen'
-//                     component={SplashScreen}
-//                     options={{
-//                         headerShown: false,
-//                     }}
-//                 ></Stack.Screen>
-//                 <Stack.Screen
-//                     name='Onboarding'
-//                     component={Onboarding}
-//                     options={{
-//                         headerShown: false,
-//                     }}
-//                 ></Stack.Screen>
-//                 <Stack.Screen
-//                     name='SignIn'
-//                     component={SignIn}
-//                     options={{
-//                         headerShown: false,
-//                     }}
-//                 ></Stack.Screen>
-//                 <Stack.Screen
-//                     name='SignInWithPhoneNumber'
-//                     component={SignInWithPhoneNumber}
-//                     options={{
-//                         // headerTransparent: true,
-//                         headerTitle: "",
-//                     }}
-//                 ></Stack.Screen>
-//                 <Stack.Screen
-//                     name='SignInWithFacebook'
-//                     component={SignInWithFacebook}
-//                     options={{
-//                         // headerTransparent: true,
-//                         headerTitle: "",
-//                     }}
-//                 ></Stack.Screen>
-//                 <Stack.Screen
-//                     name='SignInWithGoogle'
-//                     component={SignInWithGoogle}
-//                     options={{
-//                         // headerTransparent: true,
-//                         headerTitle: "",
-//                     }}
-//                 ></Stack.Screen>
-//                 <Stack.Screen
-//                     name='Verification'
-//                     component={Verification}
-//                     options={{
-//                         // headerTransparent: true,
-//                         headerTitle: "",
-//                     }}
-//                 ></Stack.Screen>
-//                 <Stack.Screen
-//                     name='HomeTabs'
-//                     component={TabButton}
-//                     options={{
-//                         headerShown: false,
-//                     }}
-//                 />
-//             </Stack.Navigator>
-//         </NavigationContainer>
-//     );
-// }
 export default class App extends React.Component {
     state = {
         fontLoaded: false,
@@ -144,28 +76,28 @@ export default class App extends React.Component {
                             name='SignInWithPhoneNumber'
                             component={SignInWithPhoneNumber}
                             options={{
-                                headerTitle: "",
+                                headerShown: false,
                             }}
                         ></Stack.Screen>
                         <Stack.Screen
                             name='SignInWithFacebook'
                             component={SignInWithFacebook}
                             options={{
-                                headerTitle: "",
+                                headerShown: false,
                             }}
                         ></Stack.Screen>
                         <Stack.Screen
                             name='SignInWithGoogle'
                             component={SignInWithGoogle}
                             options={{
-                                headerTitle: "",
+                                headerShown: false,
                             }}
                         ></Stack.Screen>
                         <Stack.Screen
                             name='Verification'
                             component={Verification}
                             options={{
-                                headerTitle: "",
+                                headerShown: false,
                             }}
                         ></Stack.Screen>
                         <Stack.Screen
@@ -194,11 +126,3 @@ export default class App extends React.Component {
         }
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-});
