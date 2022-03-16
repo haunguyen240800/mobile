@@ -9,6 +9,7 @@ import SignInWithPhoneNumber from "./src/screens/signIn/SignInWithPhoneNumber";
 import SignInWithFacebook from "./src/screens/signIn/SignInWithFacebook";
 import SignInWithGoogle from "./src/screens/signIn/SignInWithGoogle";
 import Verification from "./src/screens/signIn/Verification";
+import InputPassword from "./src/screens/signIn/InputPassword";
 import Onboarding from "./src/screens/onboarding/Onboarding";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
@@ -96,6 +97,13 @@ export default class App extends React.Component {
                         <Stack.Screen
                             name='Verification'
                             component={Verification}
+                            options={{
+                                headerShown: false,
+                            }}
+                        ></Stack.Screen>
+                        <Stack.Screen
+                            name='InputPassword'
+                            component={InputPassword}
                             options={{
                                 headerShown: false,
                             }}

@@ -32,10 +32,11 @@ export default class Verification extends React.Component {
             );
         } else {
             this.setState({ code });
-            navigation.reset({
-                index: 0,
-                routes: [{ name: "HomeTabs" }],
-            });
+            // navigation.reset({
+            //     index: 0,
+            //     routes: [{ name: "HomeTabs" }],
+            // });
+            navigation.navigate("InputPassword");
         }
     }
 

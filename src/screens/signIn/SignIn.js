@@ -32,6 +32,7 @@ const LoginButton = (props) => {
         </Icon.Button>
     );
 };
+
 export default function SignIn({ navigation }) {
     return (
         <View style={styles.container}>
@@ -42,7 +43,7 @@ export default function SignIn({ navigation }) {
             ></Image>
             <View style={styles.main}>
                 <Text style={styles.text}>
-                    Đăng ký tài khoản để bắt đầu mua sắm
+                    Đăng nhập tài khoản để bắt đầu mua sắm
                 </Text>
                 <TouchableHighlight
                     underlayColor='white'
@@ -72,7 +73,7 @@ export default function SignIn({ navigation }) {
                     </View>
                 </TouchableHighlight>
                 <Text style={styles.otherMethod}>
-                    Hoặc đăng ký qua tài khoản xã hội
+                    Hoặc đăng nhập qua tài khoản xã hội
                 </Text>
                 <View style={{ top: 80 }}>
                     <LoginButton
